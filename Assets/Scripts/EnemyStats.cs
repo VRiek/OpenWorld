@@ -1,28 +1,61 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
     public float health = 3f;
+    private Renderer enemyRenderer;
+    private bool isFlashing = false;
+    private Color originalColor;
+    private float flashDuration = 0.1f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-    }
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("Enemy"))
+            {
+                enemyRenderer = child.GetComponent<Renderer>();
+                if (enemyRenderer != null )
+                {
+                    originalColor = enemyRenderer.material.color;
+                }
+                break;
+            }
+            
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (enemyRenderer == null)
+        {
+            Debug.LogError("No child with 'Enemy' tag found");
+        }
     }
 
     public void TakeDamage(float damage)
     {
+        if (enemyRenderer != null && !isFlashing)
+        {
+            StartCoroutine(FlashRed());
+        }
+
         health -= damage;
 
         if (health <= 0)
         {
             Die();
         }
+    }
+
+    private IEnumerator FlashRed()
+    {
+        isFlashing = true;
+        enemyRenderer.material.color = Color.red;
+
+        yield return new WaitForSeconds(flashDuration);
+
+        enemyRenderer.material.color = originalColor;
+        isFlashing = false;
     }
 
     private void Die()
