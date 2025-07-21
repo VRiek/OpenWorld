@@ -19,6 +19,12 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        player = GameObject.FindWithTag("Player").transform;
+
+        if (player == null)
+        {
+            Debug.LogError("EnemyMovement.cs: Player not found!");
+        }
     }
 
     // Update is called once per frame
@@ -34,7 +40,7 @@ public class EnemyMovement : MonoBehaviour
                 break;
         }
 
-        bool playerSeen = Vector3.Distance(transform.position, player.position) < 10f;
+        bool playerSeen = Vector3.Distance(transform.position, player.position) < 50f;
 
         if (!playerSeen && currentState != StateMachine.Idle)
         {
@@ -48,13 +54,13 @@ public class EnemyMovement : MonoBehaviour
 
     void Idle()
     {
-        Debug.Log("Enemy is idling.");
+        //Debug.Log("Enemy is idling.");
         return;
     }
 
     void Engage()
     {
-        Debug.Log("Enemy is engaging.");
+        //Debug.Log("Enemy is engaging.");
         navMeshAgent.SetDestination(player.position);
     }
 }

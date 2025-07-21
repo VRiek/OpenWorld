@@ -25,14 +25,14 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == enemy)
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyStats enemyStats = collision.transform.parent.GetComponent<EnemyStats>();
 
             if (enemyStats != null)
             {
                 enemyStats.TakeDamage(bulletDamage);
-                Debug.Log($"Enemy hit! Health: {enemyStats.health}");
+                //Debug.Log($"Enemy hit! Health: {enemyStats.health}");
             }
             else
             {
