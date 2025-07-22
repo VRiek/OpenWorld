@@ -48,7 +48,7 @@ public class AudioManager : MonoBehaviour
         {
             musicSource.clip = sound.audioClip;
             musicSource.Play();
-            Debug.Log($"AudioManager.cs PlayMusic(): sound.audioClip = {sound.audioClip}");
+            //Debug.Log($"AudioManager.cs PlayMusic(): sound.audioClip = {sound.audioClip}");
         }
     }
 
@@ -63,7 +63,7 @@ public class AudioManager : MonoBehaviour
         else
         {
             sfxSource.PlayOneShot(sound.audioClip);
-            Debug.Log($"AudioManager.cs PlaySFX(): sound.audioClip = {sound.audioClip}");
+            //Debug.Log($"AudioManager.cs PlaySFX(): sound.audioClip = {sound.audioClip}");
         }
     }
 
