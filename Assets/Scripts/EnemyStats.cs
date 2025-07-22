@@ -64,6 +64,7 @@ public class EnemyStats : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+
         //Score updated by 1 when killing an enemy.
         logic.setScoreText(1);
     }

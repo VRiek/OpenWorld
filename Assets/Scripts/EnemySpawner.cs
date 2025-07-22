@@ -4,7 +4,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemy;
     public Terrain terrain;
-    private int numberOfEnemies = 100;
+    private int numberOfEnemies = 200;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

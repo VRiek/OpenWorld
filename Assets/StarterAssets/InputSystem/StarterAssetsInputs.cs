@@ -20,8 +20,15 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
+        public Logic logic;
+
+        private void Start()
+        {
+            logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<Logic>();
+        }
+
 #if ENABLE_INPUT_SYSTEM
-		public void OnMove(InputValue value)
+        public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
 		}
@@ -37,7 +44,8 @@ namespace StarterAssets
 		public void OnJump(InputValue value)
 		{
 			JumpInput(value.isPressed);
-		}
+            AudioManager.Instance.PlaySFX("Jump");
+        }
 
 		public void OnSprint(InputValue value)
 		{
@@ -73,8 +81,8 @@ namespace StarterAssets
 
 		private void SetCursorState(bool newState)
 		{
-			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
-		}
+			//Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+        }
 	}
 	
 }

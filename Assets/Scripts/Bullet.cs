@@ -19,6 +19,7 @@ public class Bullet : MonoBehaviour
 
     public void Fire(Vector3 direction)
     {
+        AudioManager.Instance.PlaySFX("Shoot");
         rigidbody.linearVelocity = direction * speed;
         Destroy(gameObject, 4f);
     }
