@@ -8,10 +8,13 @@ public class EnemyStats : MonoBehaviour
     private bool isFlashing = false;
     private Color originalColor;
     private float flashDuration = 0.1f;
+    public Logic logic;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<Logic>();
+
         foreach (Transform child in transform)
         {
             if (child.CompareTag("Enemy"))
@@ -61,5 +64,7 @@ public class EnemyStats : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+        //Score updated by 1 when killing an enemy.
+        logic.setScoreText(1);
     }
 }
