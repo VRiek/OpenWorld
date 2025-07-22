@@ -24,7 +24,7 @@ public class Logic : MonoBehaviour
         scoreText.text = score.ToString();
     }
 
-    private void TogglePause()
+    public void TogglePause()
     {
         isPaused = !isPaused;
         Time.timeScale = isPaused ? 0 : 1;
